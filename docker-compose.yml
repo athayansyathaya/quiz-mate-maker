@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: plagix_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: plagix
+      POSTGRES_PASSWORD: plagix123
+      POSTGRES_DB: plagix
+    ports:
+      - "5432:5432"
+    volumes:
+      - plagix_pgdata:/var/lib/postgresql/data
+
+volumes:
+  plagix_pgdata:

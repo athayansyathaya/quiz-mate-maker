@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  name          String
+  email         String         @unique
+  passwordHash  String
+  createdAt     DateTime       @default(now())
+  documents     Document[]
+  subscriptions Subscription[]
+  quizAttempts  QuizAttempt[]
+}
+
+model Document {
+  id            String   @id @default(uuid())
+  userId        String
+  fileName      String
+  fileSize      Int
+  fileType      String
+  storedPath    String
+  plagiarismPct Float
+  aiPct         Float
+  paraphrasePct Float
+  status        String   @default("completed")
+  reportJson    Json
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Subscription {
+  id        String   @id @default(uuid())
+  userId    String
+  plan      String
+  price     Int
+  status    String   @default("active")
+  startDate DateTime @default(now())
+  endDate   DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Quiz {
+  id        String         @id @default(uuid())
+  title     String
+  questions QuizQuestion[]
+  attempts  QuizAttempt[]
+  createdAt DateTime       @default(now())
+}
+
+model QuizQuestion {
+  id            String   @id @default(uuid())
+  quizId        String
+  question      String
+  options       Json
+  correctIndex  Int
+  explanation   String
+  order         Int
+  quiz          Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+model QuizAttempt {
+  id          String   @id @default(uuid())
+  userId      String
+  quizId      String
+  score       Int
+  totalQ      Int
+  answersJson Json
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz        Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
