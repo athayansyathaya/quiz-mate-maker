@@ -1,0 +1,42 @@
+/* Portfolio – Minimalis Soft */
+:root{
+  --bg:#faf7f2;        /* soft cream */
+  --surface:#ffffff;
+  --fg:#2b2a28;
+  --muted:#8a857d;
+  --border:#ece7df;
+  --primary:#a8b5a0;   /* sage */
+  --primary-dark:#7f8f76;
+  --accent:#e8c9b8;    /* peach */
+  --soft:#f3ede4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;font-size:15px}
+h1,h2,h3,h4{font-family:'Fraunces','Playfair Display',serif;font-weight:500;letter-spacing:-.02em;line-height:1.15}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+
+/* Nav */
+nav.top{position:sticky;top:0;background:rgba(250,247,242,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:20px 0;z-index:10}
+nav.top .container{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.02em}
+.logo span{color:var(--primary-dark)}
+nav.top .links{display:flex;gap:36px;font-size:14px;color:var(--muted)}
+nav.top .links a.active{color:var(--fg);font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--fg);color:#fff}
+.btn-outline{background:transparent;border-color:var(--fg);color:var(--fg)}
+.btn-soft{background:var(--soft);color:var(--fg)}
+
+/* Generic */
+.muted{color:var(--muted)}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px}
+section{padding:80px 0}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:48px 0;margin-top:80px;background:var(--soft)}
+footer .row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+footer .links{display:flex;gap:24px;font-size:14px;color:var(--muted)}
+.copy{text-align:center;font-size:12px;color:var(--muted);margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
